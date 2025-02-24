@@ -87,3 +87,19 @@ library.borrowers.push(borrower1);
 library.lendBook(201, 123456);
 console.log(book1.getDetails());
 console.log(borrower1.borrowedBooks);
+
+// Task 5 - Implemented Book Returns
+Library.prototype.returnBook = function(borrowerId, isbn) {
+    let book = this.books.find(b => b.isbn === isbn);
+    let borrower = this.borrowers.find(b => b.borrowerId === borrowerId);
+
+    if (book && borrower) {
+        book.updateCopies(1);
+        borrower.returnBook(book.title);
+    }
+};
+
+// Test Cases
+library.returnBook(201, 123456);
+console.log(book1.getDetails());
+console.log(borrower1.borrowedBooks);
